@@ -60,18 +60,21 @@ class TwitterDriver():
                     self._pss = line.split()[-1]
 
     @retry()
+    def click_button(self, button_xpath=str()):
+        button = self.driver.find_element(By.XPATH, button_xpath)
+        button.click()
+
+    @retry()
     def open_twitter(self):
         self.driver.get(TWITTER_PATH)
 
     @retry()
     def allow_cookies(self, button_cookies_xpath=str()):
-        button_cookies = self.driver.find_element(By.XPATH, button_cookies_xpath)
-        button_cookies.click()
+        self.click_button(button_xpath=button_cookies_xpath)
 
     @retry()
     def goto_log_in(self, button_login_xpath=str()):
-        button_login = self.driver.find_element(By.XPATH, button_login_xpath)
-        button_login.click()
+        self.click_button(button_xpath=button_login_xpath)
 
     @retry()
     def input_user(self, fill_user_xpath=str()):
@@ -80,8 +83,7 @@ class TwitterDriver():
 
     @retry()
     def next_after_inputuser(self, next_xpath=str()):
-        next_button = self.driver.find_element(By.XPATH, next_xpath)
-        next_button.click()
+        self.click_button(button_xpath=next_xpath)
 
     @retry()
     def input_pass(self, fill_pass_xpath=str()):
@@ -90,13 +92,11 @@ class TwitterDriver():
 
     @retry()
     def click_login(self, login_xpath=str()):
-        login_button = self.driver.find_element(By.XPATH, login_xpath)
-        login_button.click()
+        self.click_button(button_xpath=login_xpath)
 
     @retry()
     def init_post(self, init_post_xpath=str()):
-        init_post_button = self.driver.find_element(By.XPATH, init_post_xpath)
-        init_post_button.click()
+        self.click_button(button_xpath=init_post_xpath)
 
     @retry()
     def fill_post(self, fill_post_xpath=str(), msg=str()):
@@ -105,28 +105,23 @@ class TwitterDriver():
 
     @retry()
     def publish_post(self, post_xath=str()):
-        post_button = self.driver.find_element(By.XPATH, post_xath)
-        post_button.click()
+        self.click_button(button_xpath=post_xath)
 
     @retry()
     def click_understood(self, button_understood_xpath=str()):
-        ok_button = self.driver.find_element(By.XPATH, button_understood_xpath)
-        ok_button.click()
+        self.click_button(button_xpath=button_understood_xpath)
 
     @retry()
     def click_profile_bottom(self, button_xpath=str()):
-        profile_button = self.driver.find_element(By.XPATH, button_xpath)
-        profile_button.click()
+        self.click_button(button_xpath=button_xpath)
 
     @retry()
     def click_logoff(self, button_xpath=str()):
-        logoff_button = self.driver.find_element(By.XPATH, button_xpath)
-        logoff_button.click()
+        self.click_button(button_xpath=button_xpath)
 
     @retry()
     def click_confirm_logoff(self, button_xpath=str()):
-        logoff_button = self.driver.find_element(By.XPATH, button_xpath)
-        logoff_button.click()
+        self.click_button(button_xpath=button_xpath)
 
     def log_in_twitter(self):
         self.open_twitter()
